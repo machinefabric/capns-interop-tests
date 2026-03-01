@@ -1,4 +1,4 @@
-# Capns Interoperability Testing Framework
+# CapDag Interoperability Testing Framework
 
 Comprehensive cross-language integration testing for the capdag ecosystem.
 

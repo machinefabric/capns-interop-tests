@@ -1,4 +1,4 @@
-"""Capns interoperability testing framework."""
+"""CapDag interoperability testing framework."""
 
 __version__ = "0.1.0"
 

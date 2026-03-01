@@ -1,8 +1,8 @@
-module github.com/machinafabric/capns-interop-plugin-go
+module github.com/machinafabric/capdag-interop-plugin-go
 
 go 1.21
 
-require github.com/machinafabric/capns-go v0.0.0
+require github.com/machinafabric/capdag-go v0.0.0
 
 require (
 	github.com/machinafabric/tagged-urn-go v0.0.0 // indirect
@@ -14,6 +14,6 @@ require (
 	github.com/xeipuuv/gojsonschema v1.2.0 // indirect
 )
 
-replace github.com/machinafabric/capns-go => ../../../../../capns-go
+replace github.com/machinafabric/capdag-go => ../../../../../capdag-go
 
 replace github.com/machinafabric/tagged-urn-go => ../../../../../tagged-urn-go
