@@ -257,8 +257,8 @@ temp/
 # bindata.go
 .wsb/
 .scrap/
-src/capns_interop/plugins/go/capns-interop-plugin-go
-src/capns_interop/plugins/go/interop-test-plugin
-src/capns_interop/hosts/go/capns-interop-host-go
+src/capdag_interop/plugins/go/capdag-interop-plugin-go
+src/capdag_interop/plugins/go/interop-test-plugin
+src/capdag_interop/hosts/go/capdag-interop-host-go
 artifacts/
-src/capns_interop/hosts/go-relay/capns-interop-relay-host-go
+src/capdag_interop/hosts/go-relay/capdag-interop-relay-host-go

@@ -13,16 +13,16 @@ Updated to use TestTopology declarative API (no backward compatibility).
 import json
 import pytest
 
-from capns.bifaci.frame import Frame, FrameType, MessageId
-from capns_interop import TEST_CAPS
-from capns_interop.framework.frame_test_helper import (
+from capdag.bifaci.frame import Frame, FrameType, MessageId
+from capdag_interop import TEST_CAPS
+from capdag_interop.framework.frame_test_helper import (
     make_req_id,
     send_request,
     send_simple_request,
     read_response,
     decode_cbor_response,
 )
-from capns_interop.framework.test_topology import TestTopology
+from capdag_interop.framework.test_topology import TestTopology
 
 # E-commerce semantic cap URNs matching the test plugin's registered capabilities
 ECHO_CAP = 'cap:in=media:;out=media:'

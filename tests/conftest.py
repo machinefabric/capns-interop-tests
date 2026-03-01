@@ -129,7 +129,7 @@ def _needs_build(binary: Path, source_dir: Path, extra_deps: list[Path] | None =
         if src.is_file() and src.stat().st_mtime > bin_mtime:
             return True
 
-    # Check extra dependencies (e.g., capns library for Rust targets)
+    # Check extra dependencies (e.g., capdag library for Rust targets)
     if extra_deps:
         for dep_dir in extra_deps:
             # HARD CHECK: extra dep directories must exist
@@ -205,25 +205,25 @@ def plugin_binaries(project_root, request):
 
     clear_cache = request.config.getoption("--clear")
     artifacts = project_root / "artifacts" / "build"
-    src = project_root / "src" / "capns_interop" / "plugins"
-    capns_src = project_root.parent / "capns" / "src"  # capns library dependency
+    src = project_root / "src" / "capdag_interop" / "plugins"
+    capdag_src = project_root.parent / "capdag" / "src"  # capdag library dependency
 
-    # HARD CHECK: capns library dependency path must exist for Rust builds
-    if not capns_src.exists():
+    # HARD CHECK: capdag library dependency path must exist for Rust builds
+    if not capdag_src.exists():
         raise RuntimeError(
-            f"capns library dependency not found at: {capns_src}\n"
-            f"Expected structure: machinefabric/capns/src and machinefabric/capns-interop-tests/"
+            f"capdag library dependency not found at: {capdag_src}\n"
+            f"Expected structure: machinefabric/capdag/src and machinefabric/capdag-interop-tests/"
         )
 
     binaries = {
-        "rust": artifacts / "rust" / "capns-interop-plugin-rust",
+        "rust": artifacts / "rust" / "capdag-interop-plugin-rust",
         "python": artifacts / "python" / "plugin.py",
-        "swift": artifacts / "swift" / "capns-interop-plugin-swift",
-        "go": artifacts / "go" / "capns-interop-plugin-go",
+        "swift": artifacts / "swift" / "capdag-interop-plugin-swift",
+        "go": artifacts / "go" / "capdag-interop-plugin-go",
     }
 
     targets = {
-        "rust": ("build-rust", src / "rust", [capns_src]),
+        "rust": ("build-rust", src / "rust", [capdag_src]),
         "python": ("build-python", src / "python", None),
         "swift": ("build-swift", src / "swift", None),
         "go": ("build-go", src / "go", None),
@@ -350,25 +350,25 @@ def relay_host_binaries(project_root, request):
 
     clear_cache = request.config.getoption("--clear")
     artifacts = project_root / "artifacts" / "build"
-    hosts_src = project_root / "src" / "capns_interop" / "hosts"
-    capns_src = project_root.parent / "capns" / "src"  # capns library dependency
+    hosts_src = project_root / "src" / "capdag_interop" / "hosts"
+    capdag_src = project_root.parent / "capdag" / "src"  # capdag library dependency
 
-    # HARD CHECK: capns library dependency path must exist for Rust builds
-    if not capns_src.exists():
+    # HARD CHECK: capdag library dependency path must exist for Rust builds
+    if not capdag_src.exists():
         raise RuntimeError(
-            f"capns library dependency not found at: {capns_src}\n"
-            f"Expected structure: machinefabric/capns/src and machinefabric/capns-interop-tests/"
+            f"capdag library dependency not found at: {capdag_src}\n"
+            f"Expected structure: machinefabric/capdag/src and machinefabric/capdag-interop-tests/"
         )
 
     binaries = {
-        "rust": artifacts / "rust-relay" / "capns-interop-relay-host-rust",
+        "rust": artifacts / "rust-relay" / "capdag-interop-relay-host-rust",
         "python": hosts_src / "python" / "relay_host.py",
-        "swift": artifacts / "swift-relay" / "capns-interop-relay-host-swift",
-        "go": artifacts / "go-relay" / "capns-interop-relay-host-go",
+        "swift": artifacts / "swift-relay" / "capdag-interop-relay-host-swift",
+        "go": artifacts / "go-relay" / "capdag-interop-relay-host-go",
     }
 
     targets = {
-        "rust": ("build-rust-relay-host", hosts_src / "rust-relay", [capns_src]),
+        "rust": ("build-rust-relay-host", hosts_src / "rust-relay", [capdag_src]),
         "swift": ("build-swift-relay-host", hosts_src / "swift-relay", None),
         "go": ("build-go-relay-host", hosts_src / "go-relay", None),
     }
@@ -441,26 +441,26 @@ def router_binaries(project_root, request):
 
     clear_cache = request.config.getoption("--clear")
     artifacts = project_root / "artifacts" / "build"
-    routers_src = project_root / "src" / "capns_interop" / "routers"
-    capns_src = project_root.parent / "capns" / "src"  # capns library dependency
+    routers_src = project_root / "src" / "capdag_interop" / "routers"
+    capdag_src = project_root.parent / "capdag" / "src"  # capdag library dependency
 
-    # HARD CHECK: capns library dependency path must exist for Rust builds
-    if not capns_src.exists():
+    # HARD CHECK: capdag library dependency path must exist for Rust builds
+    if not capdag_src.exists():
         raise RuntimeError(
-            f"capns library dependency not found at: {capns_src}\n"
-            f"Expected structure: machinefabric/capns/src and machinefabric/capns-interop-tests/"
+            f"capdag library dependency not found at: {capdag_src}\n"
+            f"Expected structure: machinefabric/capdag/src and machinefabric/capdag-interop-tests/"
         )
 
     binaries = {
-        "rust": artifacts / "rust-router" / "capns-interop-router-rust",
-        "swift": artifacts / "swift-router" / "capns-interop-router-swift",
+        "rust": artifacts / "rust-router" / "capdag-interop-router-rust",
+        "swift": artifacts / "swift-router" / "capdag-interop-router-swift",
         # TODO: Add other languages when implemented
         # "python": routers_src / "python" / "router.py",
-        # "go": artifacts / "go-router" / "capns-interop-router-go",
+        # "go": artifacts / "go-router" / "capdag-interop-router-go",
     }
 
     targets = {
-        "rust": ("build-rust-router", routers_src / "rust", [capns_src]),
+        "rust": ("build-rust-router", routers_src / "rust", [capdag_src]),
         "swift": ("build-swift-router", routers_src / "swift", None),
     }
 

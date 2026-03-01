@@ -1,0 +1,11 @@
+[package]
+name = "capdag-interop-router-rust"
+version = "1.0.0"
+edition = "2021"
+
+[dependencies]
+capdag = { path = "../../../../../capdag" }
+
+[[bin]]
+name = "capdag-interop-router-rust"
+path = "src/main.rs"

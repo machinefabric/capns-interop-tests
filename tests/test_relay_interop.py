@@ -10,16 +10,16 @@ Architecture:
 import json
 import pytest
 
-from capns.bifaci.frame import Frame, FrameType, Limits, MessageId
-from capns_interop import TEST_CAPS
-from capns_interop.framework.frame_test_helper import (
+from capdag.bifaci.frame import Frame, FrameType, Limits, MessageId
+from capdag_interop import TEST_CAPS
+from capdag_interop.framework.frame_test_helper import (
     make_req_id,
     send_request,
     send_simple_request,
     read_response,
     decode_cbor_response,
 )
-from capns_interop.framework.test_topology import TestTopology
+from capdag_interop.framework.test_topology import TestTopology
 
 # E-commerce semantic cap URNs matching test plugin
 ECHO_CAP = 'cap:in=media:;out=media:'
@@ -113,7 +113,7 @@ def test_relay_state_delivery(router_binaries, relay_host_binaries, plugin_binar
     with topology:
         reader, writer = topology.start()
         # Send RelayState through router to slave
-        from capns.bifaci.io import FrameWriter
+        from capdag.bifaci.io import FrameWriter
         state_frame = Frame.relay_state(b'{"memory_mb": 1024}')
         writer.write(state_frame)
 

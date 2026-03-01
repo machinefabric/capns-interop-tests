@@ -14,14 +14,14 @@ Where Router = RelaySwitch + RelayMaster (subprocess).
 import json
 import pytest
 
-from capns_interop import TEST_CAPS
-from capns_interop.framework.frame_test_helper import (
+from capdag_interop import TEST_CAPS
+from capdag_interop.framework.frame_test_helper import (
     make_req_id,
     send_request,
     read_response,
     decode_cbor_response,
 )
-from capns_interop.framework.test_topology import TestTopology
+from capdag_interop.framework.test_topology import TestTopology
 
 SUPPORTED_ROUTER_LANGS = ["rust", "swift"]
 SUPPORTED_HOST_LANGS = ["rust", "swift"]

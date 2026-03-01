@@ -1,10 +1,10 @@
 # Capns Interoperability Testing Framework
 
-Comprehensive cross-language integration testing for the capns ecosystem.
+Comprehensive cross-language integration testing for the capdag ecosystem.
 
 ## Overview
 
-Tests all viable capns implementations (Rust, Python, Swift, Go) against each other in both host and plugin roles, ensuring bulletproof protocol compliance across:
+Tests all viable capdag implementations (Rust, Python, Swift, Go) against each other in both host and plugin roles, ensuring bulletproof protocol compliance across:
 - Simple request/response
 - Streaming responses
 - Stream multiplexing
@@ -39,7 +39,7 @@ pytest tests/test_matrix.py -v
 - Python 3.10+
 - Rust toolchain (cargo)
 - Swift toolchain (swift build)
-- capns-py package (../capns-py)
+- capdag-py package (../capdag-py)
 
 ## Test Matrix
 
@@ -52,16 +52,16 @@ swift-host    ✓           ✓              ✓
 
 ## Project Structure
 
-- `src/capns_interop/framework/` - Core orchestration
-- `src/capns_interop/scenarios/` - Test scenarios
-- `src/capns_interop/plugins/` - Test plugin sources (Rust/Python/Swift)
+- `src/capdag_interop/framework/` - Core orchestration
+- `src/capdag_interop/scenarios/` - Test scenarios
+- `src/capdag_interop/plugins/` - Test plugin sources (Rust/Python/Swift)
 - `tests/` - pytest test suite
 - `artifacts/` - Build outputs and reports
 
 ## Adding New Languages
 
 When Go/JavaScript implement CBOR runtimes:
-1. Add plugin implementation in `src/capns_interop/plugins/{go,javascript}/`
+1. Add plugin implementation in `src/capdag_interop/plugins/{go,javascript}/`
 2. Add Makefile build target
 3. Update `SUPPORTED_LANGUAGES` constant
 4. Matrix automatically expands from 9 to 25 configurations

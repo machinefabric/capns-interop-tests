@@ -6,12 +6,12 @@ set -e
 
 cd "$(dirname "$0")"
 
-SOCKET_PATH="/tmp/capns_test_rust_stack_$$.sock"
+SOCKET_PATH="/tmp/capdag_test_rust_stack_$$.sock"
 
 echo "Testing Rust 3-tier stack (multi-host architecture)..."
-echo "  Router: artifacts/build/rust-router/capns-interop-router-rust"
-echo "  Host:   artifacts/build/rust-relay/capns-interop-relay-host-rust"
-echo "  Plugin: artifacts/build/rust/capns-interop-plugin-rust"
+echo "  Router: artifacts/build/rust-router/capdag-interop-router-rust"
+echo "  Host:   artifacts/build/rust-relay/capdag-interop-relay-host-rust"
+echo "  Plugin: artifacts/build/rust/capdag-interop-plugin-rust"
 echo "  Socket: $SOCKET_PATH"
 echo ""
 
@@ -20,9 +20,9 @@ trap "rm -f $SOCKET_PATH" EXIT
 
 # Start relay host in background listening on socket
 echo "Starting relay host..."
-artifacts/build/rust-relay/capns-interop-relay-host-rust \
+artifacts/build/rust-relay/capdag-interop-relay-host-rust \
   --listen "$SOCKET_PATH" \
-  --spawn artifacts/build/rust/capns-interop-plugin-rust \
+  --spawn artifacts/build/rust/capdag-interop-plugin-rust \
   --relay &
 HOST_PID=$!
 
@@ -44,7 +44,7 @@ fi
 
 # Start router connecting to host socket
 echo "Starting router..."
-gtimeout 30 artifacts/build/rust-router/capns-interop-router-rust \
+gtimeout 30 artifacts/build/rust-router/capdag-interop-router-rust \
   --connect "$SOCKET_PATH" \
   </dev/null
 

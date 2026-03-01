@@ -134,7 +134,7 @@ ALL implementations (Rust, Python, Go, Swift) MUST:
 
 ## Cross-Language Consistency
 
-- Rust: capns-interop-tests/src/capns_interop/plugins/rust/src/main.rs
-- Python: capns-interop-tests/src/capns_interop/plugins/python/plugin.py
-- Go: capns-interop-tests/src/capns_interop/plugins/go/main.go
-- Swift: capns-interop-tests/src/capns_interop/plugins/swift/Sources/main.swift
+- Rust: capdag-interop-tests/src/capdag_interop/plugins/rust/src/main.rs
+- Python: capdag-interop-tests/src/capdag_interop/plugins/python/plugin.py
+- Go: capdag-interop-tests/src/capdag_interop/plugins/go/main.go
+- Swift: capdag-interop-tests/src/capdag_interop/plugins/swift/Sources/main.swift

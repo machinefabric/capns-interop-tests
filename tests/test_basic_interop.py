@@ -12,15 +12,15 @@ Updated to use TestTopology declarative API (no backward compatibility).
 import json
 import pytest
 
-from capns_interop import TEST_CAPS
-from capns_interop.framework.frame_test_helper import (
+from capdag_interop import TEST_CAPS
+from capdag_interop.framework.frame_test_helper import (
     make_req_id,
     send_request,
     read_response,
     decode_cbor_response,
     FrameType,
 )
-from capns_interop.framework.test_topology import TestTopology
+from capdag_interop.framework.test_topology import TestTopology
 
 SUPPORTED_ROUTER_LANGS = ["rust", "swift"]
 SUPPORTED_HOST_LANGS = ["rust", "swift"]
@@ -127,7 +127,7 @@ def test_get_manifest(router_binaries, relay_host_binaries, plugin_binaries, rou
 
         # DEBUG: Manually read raw frames to trace what's on the pipe
         import sys, struct, cbor2
-        from capns.bifaci.io import decode_frame as df2
+        from capdag.bifaci.io import decode_frame as df2
         raw_stream = reader.inner_mut()
         debug_frames = []
         for frame_num in range(20):

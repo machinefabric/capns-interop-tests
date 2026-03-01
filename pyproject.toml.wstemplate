@@ -3,15 +3,15 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "capns-interop-tests"
+name = "capdag-interop-tests"
 version = "{{ project.version }}"
-description = "Interoperability testing framework for capns implementations"
+description = "Interoperability testing framework for capdag implementations"
 requires-python = ">=3.10"
 dependencies = [
     "pytest>=7.0",
     "pytest-asyncio>=0.21.0",
     "pytest-timeout>=2.1.0",
-    "capns>={{ projects.capns_py.version }}",
+    "capdag>={{ projects.capdag_py.version }}",
     "tagged-urn>={{ projects.tagged_urn_py.version }}",
 ]
 

@@ -12,10 +12,10 @@ import json
 import pytest
 import cbor2
 
-from capns.bifaci.frame import FrameType
-from capns_interop import TEST_CAPS
-from capns_interop.framework.test_topology import TestTopology
-from capns_interop.framework.frame_test_helper import (
+from capdag.bifaci.frame import FrameType
+from capdag_interop import TEST_CAPS
+from capdag_interop.framework.test_topology import TestTopology
+from capdag_interop.framework.frame_test_helper import (
     make_req_id,
     send_request,
     read_response,

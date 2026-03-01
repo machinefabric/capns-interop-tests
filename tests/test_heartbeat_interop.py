@@ -11,13 +11,13 @@ Architecture:
 import json
 import pytest
 
-from capns_interop import TEST_CAPS
-from capns_interop.framework.frame_test_helper import (
+from capdag_interop import TEST_CAPS
+from capdag_interop.framework.frame_test_helper import (
     make_req_id,
     send_request,
     read_response,
 )
-from capns_interop.framework.test_topology import TestTopology
+from capdag_interop.framework.test_topology import TestTopology
 
 SUPPORTED_ROUTER_LANGS = ["rust"]
 SUPPORTED_HOST_LANGS = ["rust"]

@@ -71,13 +71,13 @@ def invoke_plugin_cli(plugin_path: Path, command: str, *args) -> dict:
         import sys
         cmd = [sys.executable, str(plugin_path), command] + list(args)
 
-        # Add capns-py and tagged-urn-py to PYTHONPATH
+        # Add capdag-py and tagged-urn-py to PYTHONPATH
         env = os.environ.copy()
         project_root = plugin_path.parent.parent.parent.parent
-        capns_py = project_root / "capns-py" / "src"
+        capdag_py = project_root / "capdag-py" / "src"
         tagged_urn_py = project_root / "tagged-urn-py" / "src"
 
-        python_paths = [str(capns_py), str(tagged_urn_py)]
+        python_paths = [str(capdag_py), str(tagged_urn_py)]
         if "PYTHONPATH" in env:
             python_paths.append(env["PYTHONPATH"])
         env["PYTHONPATH"] = ":".join(python_paths)

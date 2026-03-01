@@ -1,1 +1,1 @@
-"""Test suite for capns interoperability."""
+"""Test suite for capdag interoperability."""

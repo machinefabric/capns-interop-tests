@@ -1,7 +1,7 @@
 """Manifest validation interoperability tests.
 
 Tests that all plugins properly declare CAP_IDENTITY in their manifests.
-Per the capns protocol specification, ALL plugins MUST explicitly declare
+Per the capdag protocol specification, ALL plugins MUST explicitly declare
 CAP_IDENTITY (cap:) - no implicit fallbacks allowed.
 
 This is enforced by PluginRuntime.with_manifest() which fails hard if
@@ -13,13 +13,13 @@ Architecture:
 
 import pytest
 
-from capns_interop import TEST_CAPS
-from capns_interop.framework.frame_test_helper import (
+from capdag_interop import TEST_CAPS
+from capdag_interop.framework.frame_test_helper import (
     make_req_id,
     send_request,
     read_response,
 )
-from capns_interop.framework.test_topology import TestTopology
+from capdag_interop.framework.test_topology import TestTopology
 
 SUPPORTED_ROUTER_LANGS = ["rust"]
 SUPPORTED_HOST_LANGS = ["rust"]
