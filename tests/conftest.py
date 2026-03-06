@@ -64,9 +64,9 @@ def pytest_collection_modifyitems(config, items):
             # Check if test has language parameters
             if hasattr(item, "callspec"):
                 params = item.callspec.params
-                # Check router_lang, host_lang, plugin_lang (if they exist)
+                # Check router_lang, host_lang, plugin_lang, plugin_name (if they exist)
                 skip = False
-                for lang_param in ["router_lang", "host_lang", "plugin_lang"]:
+                for lang_param in ["router_lang", "host_lang", "plugin_lang", "plugin_name"]:
                     if lang_param in params:
                         if params[lang_param] not in allowed_langs:
                             skip = True

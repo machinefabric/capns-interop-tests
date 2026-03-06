@@ -199,13 +199,22 @@ async def test_missing_file_error(plugin_binaries, tmp_path, plugin_name):
 
 @pytest.mark.asyncio
 @pytest.mark.timeout(30)
-async def test_cross_language_consistency(plugin_binaries, test_files):
+async def test_cross_language_consistency(plugin_binaries, test_files, request):
     """Test all languages produce identical results for the same file."""
     file_path = test_files["binary"]
     results = {}
 
-    for plugin_name in ["rust", "python", "go", "swift"]:
+    # Get available languages from --langs option or use all that have binaries
+    langs_option = request.config.getoption("--langs")
+    if langs_option:
+        available_langs = [lang.strip() for lang in langs_option.split(",")]
+    else:
+        available_langs = ["rust", "python", "go", "swift"]
+
+    for plugin_name in available_langs:
         plugin_path = plugin_binaries[plugin_name]
+        if not plugin_path.exists():
+            continue
         result = invoke_plugin_cli(plugin_path, "read_file_info", str(file_path))
         results[plugin_name] = result
 
@@ -221,7 +230,7 @@ async def test_cross_language_consistency(plugin_binaries, test_files):
 
 @pytest.mark.asyncio
 @pytest.mark.timeout(30)
-async def test_utf8_text_file(plugin_binaries, tmp_path):
+async def test_utf8_text_file(plugin_binaries, tmp_path, request):
     """Test plugin handles UTF-8 text files correctly."""
     # Create UTF-8 file with various characters
     utf8_file = tmp_path / "utf8.txt"
@@ -231,8 +240,17 @@ async def test_utf8_text_file(plugin_binaries, tmp_path):
     expected_size = len(utf8_content.encode('utf-8'))
     expected_checksum = hashlib.sha256(utf8_content.encode('utf-8')).hexdigest()
 
-    for plugin_name in ["rust", "python", "go", "swift"]:
+    # Get available languages from --langs option or use all that have binaries
+    langs_option = request.config.getoption("--langs")
+    if langs_option:
+        available_langs = [lang.strip() for lang in langs_option.split(",")]
+    else:
+        available_langs = ["rust", "python", "go", "swift"]
+
+    for plugin_name in available_langs:
         plugin_path = plugin_binaries[plugin_name]
+        if not plugin_path.exists():
+            continue
         result = invoke_plugin_cli(plugin_path, "read_file_info", str(utf8_file))
 
         assert result["size"] == expected_size, \
