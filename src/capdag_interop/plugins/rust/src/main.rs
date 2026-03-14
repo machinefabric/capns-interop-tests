@@ -310,6 +310,9 @@ impl Op<()> for PeerEchoOp {
         let response = req.peer().call_with_bytes(
             "cap:in=media:;out=media:",
             &[("media:customer-message;textable", &payload)],
+            req.output(),
+            0.0,
+            1.0,
         ).await.map_err(|e| {
             eprintln!("[peer_echo] Peer call failed: {}", e);
             OpError::ExecutionFailed(e.to_string())
@@ -457,6 +460,9 @@ impl Op<()> for NestedCallOp {
         let response = req.peer().call_with_bytes(
             r#"cap:in="media:order-value;json;textable;record";op=double;out="media:loyalty-points;integer;textable;numeric""#,
             &[("media:order-value;json;textable;record", &double_arg)],
+            req.output(),
+            0.0,
+            1.0,
         ).await.map_err(|e| OpError::ExecutionFailed(e.to_string()))?;
 
         let cbor_value = response.collect_value().await
