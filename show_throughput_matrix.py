@@ -38,7 +38,8 @@ def print_throughput_matrix(json_file):
         print(f"THROUGHPUT MATRIX (MB/s) - Router: {router.upper()}")
         print("="*80)
         print()
-        print(f"  {'host ↓ \\ plugin →':>20}", end="")
+        header = 'host ↓ \\ plugin →'
+        print(f"  {header:>20}", end="")
         for p in langs:
             print(f"  {p:>8}", end="")
         print()
